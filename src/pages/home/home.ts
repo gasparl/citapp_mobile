@@ -569,6 +569,9 @@ export class HomePage {
       this.nontargref_words[3] = data_dict.filler7 || this.nontargref_words[3];
       this.nontargref_words[4] = data_dict.filler8 || this.nontargref_words[4];
       this.nontargref_words[5] = data_dict.filler9 || this.nontargref_words[5];
+      this.consentset = data_dict.consent || this.consentset;
+      this.trP.lang = data_dict.language || this.trP.lang;
+      this.mails = data_dict.mails || this.mails;
       return ("Data loaded from database");
     } catch (e) {
       document.getElementById("storefeed_id").style.color = 'red';
