@@ -303,7 +303,7 @@ export class TranslationProvider {
           '<span id="feedback_id1">' + intro + intro_end + '</br></br>Az első gyakorló feladat során két fajta elemet kell kategorizálnod. ' + inducers_instructions +
           'Egy adott időn belül kell adni minden választ. Próbálj gyors és ugyanakkor pontos is lenni. Minden kategóriában legalább 80% helyes válasz szükséges, másképp meg kell ismételned a gyakorló feladatot.</span>');
         if (cittype === 0) {
-          thetexts.push("<span id='feedback_id2'>In the second practice round, you have to categorize the main test items. The aim of the entire test will be to show whether or not one of these main items is recognized by you. " + main_instruction + main_end + '</span>');
+          thetexts.push("<span id='feedback_id2'>A második gyakorlófeladat során a fő teszt elemeket kell kategorizálnod. Az egész teszt célja az lesz, hogy kimutassuk, felismered-e az egyikét ezeknek a fő elemeknek. " + main_instruction + main_end + '</span>');
           let ittypes = [
             this.it_type_feed_dict['hu'].main_item,
             this.it_type_feed_dict['hu'].target,
@@ -311,13 +311,13 @@ export class TranslationProvider {
             this.it_type_feed_dict['hu'].targetflr
           ].join(', ');
           thetexts.push(
-            "<span id='feedback_id3'>In the third and last practice round all items are present (" + ittypes + "). You again have to respond fast, but a certain number of errors is allowed. The task is the same. Touch the <i>right</i> button when you see the following items:<br>" + targs.replace('<br>', '') + trefs + "Touch the <i>left</i> button for everything else.</span>");
+            "<span id='feedback_id3'>A harmadik és utolsó gyakorlófeladat az összes elemet tartalmazza (" + ittypes + "). Ismét gyorsan kell választ adnod, de egy bizonyos számú hiba megengedett. A feladat ugyanaz. Válaszd a <i>jobb oldali</i> gombot ha a következő elemek bármelyike jelenik meg:<br>" + targs.replace('<br>', '') + trefs + "Válaszd a <i>bal oldali</i> gombot ha bármely más elem jelenik meg.</span>");
         } else {
-          thetexts.push('<span id="feedback_id2">In the second and last practice round, you also have to categorize the main test items. The aim of the entire test will be to show whether or not one of these main items is recognized by you. These are:<br>' + nontargs + 'These all have to be categorized by touching the <i>left</i> button. You again need at least 80% accuracy for the previous item categories (left-side and right-side secondary items), as well as for this new category (main items).</span>');
+          thetexts.push('<span id="feedback_id2">A második és utolsó gyakorlófeladat a fő teszt elemeket is tartalmazza. Az egész teszt célja az lesz, hogy kimutassuk, felismered-e az egyikét ezeknek a fő elemeknek. Ezek az elemek:<br>' + nontargs + 'Ezeket az elemeket mind a <i>bal oldali</i> gomb megérintésével kell kategorizálni. Ismét legalább 80% helyes válasz szükséges az előző kategórákban is (bal- és jobb-oldali másodlagos elemek), és ebben az új kategóriában is (fő elemek).</span>');
           targs = '';
         }
         thetexts.push(
-          "Now the actual test begins. The task is the same. Touch the <i>right</i> button when you see the following items:<br>" + targs.replace('<br>', '') + trefs + "Touch the <i>left</i> button for everything else.<br><br>Try to be both accurate and fast.");
+          "Most következik az éles teszt. A feladat ugyanaz. Válaszd a <i>jobb oldali</i> gombot ha az alábbi elemel bármelyike jelenik meg:<br>" + targs.replace('<br>', '') + trefs + "Válaszd a <i>bal oldali</i> gombot ha bármely más elem jelenik meg.<br><br>Probálj pontos és gyors lenni.");
       } else {
         trefs = '';
         thetexts.push(intro + main_instruction + intro_end + main_end);
