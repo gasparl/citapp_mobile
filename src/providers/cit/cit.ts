@@ -48,7 +48,7 @@ export class CitProvider {
     }.bind(this), rt_sim);
   }
   //*/
-  to_slice: number = 10;
+  to_slice: number = 0; // 0 to skip
 
   subj_id: string = '';
   current_div: string = "div_start"; // ddd default: "div_start", div_settings, div_dems, div_cit_main, div_end

@@ -225,3 +225,17 @@ page-home {
     top: 68%;
   }
 }
+@media screen and (orientation:landscape) {
+  .alert-wrapper {
+    max-height: 280px;
+    min-height: 100px;
+  }
+
+  [ng-reflect-ng-switch] {
+    overflow: auto;
+  }
+
+  .alert-radio-group {
+    max-height: 180px !important;
+  }
+}
