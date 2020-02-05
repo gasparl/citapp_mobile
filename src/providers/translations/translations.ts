@@ -317,7 +317,7 @@ export class TranslationProvider {
           targs = '';
         }
         thetexts.push(
-          "Most következik az éles teszt. A feladat ugyanaz. Válaszd a <i>jobb oldali</i> gombot ha az alábbi elemel bármelyike jelenik meg:<br>" + targs.replace('<br>', '') + trefs + "Válaszd a <i>bal oldali</i> gombot ha bármely más elem jelenik meg.<br><br>Probálj pontos és gyors lenni.");
+          "Most következik az éles teszt. A feladat ugyanaz. Válaszd a <i>jobb oldali</i> gombot ha az alábbi elemek bármelyike jelenik meg:<br>" + targs.replace('<br>', '') + trefs + "Válaszd a <i>bal oldali</i> gombot ha bármely más elem jelenik meg.<br><br>Probálj pontos és gyors lenni.");
       } else {
         trefs = '';
         thetexts.push(intro + main_instruction + intro_end + main_end);
