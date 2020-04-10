@@ -33,7 +33,7 @@ export class TranslationProvider {
     'de': ["IRRELEVANT", "FREMD", "UNBEKANNT", "ANDERE", "SONSTIGES", "UNVERTRAUT"],
     'hu': ["MELLÉKES", "LÉNYEGTELEN", "EGYÉB", "RANDOM", "MÁS", "KÖZÖMBÖS"],
     'jp': '日本語',
-    'pl': ["OBCE", "NIEISTOTNE", "INNE", "PRZYPADKOWE", "OBOJĘTNE", "NIEZNANE"]
+    'pl': ["OBCE", "NIEISTOTNE", "ZWYKŁE", "PRZYPADKOWE", "OBOJĘTNE", "NIEZNANE"]
   };
 
   consent: object = {
@@ -219,7 +219,7 @@ export class TranslationProvider {
             this.it_type_feed_dict['en'].targetflr
           ].join(', ');
           thetexts.push(
-            "<span id='feedback_id3'>In the third and last practice round all items are present (" + ittypes + "). You again have to respond fast, but a certain number of errors is allowed. The task is the same. Touch the <i>right</i> button when you see the following items:<br>" + targs.replace('<br>', '') + trefs + "Touch the <i>left</i> button for everything else.</span>");
+            "<span id='feedback_id3'>In the third and last practice round all items are present (" + ittypes + "). <br><br>You again have to respond fast, but a certain number of errors is allowed. The task is the same. Touch the <i>right</i> button when you see the following items:<br>" + targs.replace('<br>', '') + trefs + "Touch the <i>left</i> button for everything else.</span>");
         } else {
           thetexts.push('<span id="feedback_id2">In the second and last practice round, you also have to categorize the main test items. The aim of the entire test will be to show whether or not one of these main items is recognized by you. These are:<br>' + nontargs + 'These all have to be categorized by touching the <i>left</i> button. You again need at least 80% accuracy for the previous item categories (left-side and right-side secondary items), as well as for this new category (main items).</span>');
           targs = '';
@@ -264,7 +264,7 @@ export class TranslationProvider {
           this.it_type_feed_dict['de'].main_item,
           this.it_type_feed_dict['de'].target].join(', ');
           thetexts.push(
-            "<span id='feedback_id3'>In der dritten und letzten Übungsrunde werden alle Elemente getestet (" + ittypes + "). Sie müssen erneut schnell reagieren, aber eine bestimmte Anzahl von Fehlern ist zugelassen. Die Aufgabenstellung ist die gleiche. Berühren Sie die <i>rechte</i> Taste, wenn Sie folgende Elemente sehen:<br>" + targs.replace('<br>', '') + trefs + "Berühren Sie die <i>linke</i> Taste für alle anderen Elemente.</span>");
+            "<span id='feedback_id3'>In der dritten und letzten Übungsrunde werden alle Elemente getestet (" + ittypes + "). <br><br>Sie müssen erneut schnell reagieren, aber eine bestimmte Anzahl von Fehlern ist zugelassen. Die Aufgabenstellung ist die gleiche. Berühren Sie die <i>rechte</i> Taste, wenn Sie folgende Elemente sehen:<br>" + targs.replace('<br>', '') + trefs + "Berühren Sie die <i>linke</i> Taste für alle anderen Elemente.</span>");
         } else {
           thetexts.push('<span id="feedback_id2">In der zweiten und letzten Übungsrunde kommen die zentralen Testelemente hinzu. Ziel des gesamten Tests ist es, zu zeigen, ob eines dieser zentralen Elemente von Ihnen erkannt wird oder nicht. Diese sind:<br>' + nontargs + 'Kategorisieren Sie all diese Elemente durch das Berühren der <i>linken</i> Taste. Sie benötigen wieder mindestens 80% korrekte Antworten, sowohl in den vorherigen Kategorien (linke und rechte Zusatzelemente) als auch in dieser neuen Kategorie (zentrale Elemente).</span>');
           targs = '';
@@ -288,7 +288,7 @@ export class TranslationProvider {
       } else {
         numprac = 'két';
       }
-      let intro = 'A teszt során különféle elemek ("stimulusok", akár szöveg akár kép) jelennek meg egyesével a képernyő közepén. Két érintőgomb lesz látható az érintőképernyőn: egy baloldalt, és egy jobboldalt. Az bal oldali vagy a jobb oldali gomb megérintésével kell kategorizálni minden elemet. ';
+      let intro = 'A teszt során különféle elemek ("stimulusok", akár szöveg akár kép) jelennek meg egyesével a képernyő közepén. Két gomb lesz látható az érintőképernyőn: egy baloldalt, és egy jobboldalt. Az bal oldali vagy a jobb oldali gomb megérintésével kell kategorizálni minden elemet. ';
       let intro_end = 'Először ' + numprac + ' rövid gyakorló feladat jön. ';
       let inducers_instructions =
         '</br></br>Válaszd a <i>jobb oldali</i> gombot ha a következő elemek bármelyike jelenik meg:<br>' + trefs + 'Válaszd a <i>bal oldali</i> gombot ha bármely más elem jelenik meg. Ezek az elemek:<br>' + nontrefs;
@@ -296,7 +296,7 @@ export class TranslationProvider {
         targs +
         'Válaszd a <i>bal oldali</i> gombot ha bármely más elem jelenik meg. Ezek az elemek:<br>' +
         nontargs;
-      let main_end = 'A következő gyakorló feladatban sok időd van kiválasztani a helyes érintőgombot, de <b>minden elemre helyes választ kell adnod</b>. Ha hibás választ adsz (vagy nem adsz választ több mint 10 másodpercig), meg kell ismételned ezt a gyakorló feladatot. ';
+      let main_end = 'A következő gyakorló feladatban sok időd van kiválasztani a helyes gombot, de <b>minden elemre helyes választ kell adnod</b>. Ha hibás választ adsz (vagy nem adsz választ több mint 10 másodpercig), meg kell ismételned ezt a gyakorló feladatot. ';
       // 0: fillers & target, 1: standard CIT, 2: fillers (no target)
       if (cittype !== 1) {
         thetexts.push(
@@ -311,7 +311,7 @@ export class TranslationProvider {
             this.it_type_feed_dict['hu'].targetflr
           ].join(', ');
           thetexts.push(
-            "<span id='feedback_id3'>A harmadik és utolsó gyakorlófeladat az összes elemet tartalmazza (" + ittypes + "). Ismét gyorsan kell választ adnod, de egy bizonyos számú hiba megengedett. A feladat ugyanaz. Válaszd a <i>jobb oldali</i> gombot ha a következő elemek bármelyike jelenik meg:<br>" + targs.replace('<br>', '') + trefs + "Válaszd a <i>bal oldali</i> gombot ha bármely más elem jelenik meg.</span>");
+            "<span id='feedback_id3'>A harmadik és utolsó gyakorlófeladat az összes elemet tartalmazza (" + ittypes + "). <br><br>Ismét gyorsan kell választ adnod, de egy bizonyos számú hiba megengedett. A feladat ugyanaz. Válaszd a <i>jobb oldali</i> gombot ha a következő elemek bármelyike jelenik meg:<br>" + targs.replace('<br>', '') + trefs + "Válaszd a <i>bal oldali</i> gombot ha bármely más elem jelenik meg.</span>");
         } else {
           thetexts.push('<span id="feedback_id2">A második és utolsó gyakorlófeladat a fő teszt elemeket is tartalmazza. Az egész teszt célja az lesz, hogy kimutassuk, felismered-e az egyikét ezeknek a fő elemeknek. Ezek az elemek:<br>' + nontargs + 'Ezeket az elemeket mind a <i>bal oldali</i> gomb megérintésével kell kategorizálni. Ismét legalább 80% helyes válasz szükséges az előző kategórákban is (bal- és jobb-oldali másodlagos elemek), és ebben az új kategóriában is (fő elemek).</span>');
           targs = '';
@@ -359,7 +359,7 @@ export class TranslationProvider {
             this.it_type_feed_dict['pl'].targetflr
           ].join(', ');
           thetexts.push(
-            "<span id='feedback_id3'>W trzeciej i ostatniej rundzie treningowej obecne są wszystkie elementy (" + ittypes + "). Również tym razem musisz reagować szybko, jednak dopuszczalna jest pewna liczba błędów. Zadanie polega na tym samym. Dotknij przycisku po <i>prawej</i> stronie, gdy zobaczysz następujące elementy:<br>" + targs.replace('<br>', '') + trefs + "Dotknij przycisku po <i>lewej</i> stronie, gdy zobaczysz jakikolwiek inny element.</span>");
+            "<span id='feedback_id3'>W trzeciej i ostatniej rundzie treningowej obecne są wszystkie elementy (" + ittypes + "). <br><br>Również tym razem musisz reagować szybko, jednak dopuszczalna jest pewna liczba błędów. Zadanie polega na tym samym. Dotknij przycisku po <i>prawej</i> stronie, gdy zobaczysz następujące elementy:<br>" + targs.replace('<br>', '') + trefs + "Dotknij przycisku po <i>lewej</i> stronie, gdy zobaczysz jakikolwiek inny element.</span>");
         } else {
           thetexts.push('<span id="feedback_id2">W drugiej i ostatniej rundzie treningowej Twoim zadaniem będzie dodatkowo przyporządkować główne elementy testowe. Celem całego testu będzie wykazanie, czy jeden z tych elementów głównych jest przez Ciebie rozpoznawany, czy też nie. Te elementy główne to:<br>' + nontargs + 'Wszystkie elementy główne należy przyporządkować, dotykając przycisku po <i>lewej</i> stronie. Również w tym przypadku konieczne jest uzyskanie co najmniej 80% poprawnych odpowiedzi, zarówno dla poprzednich typów elementów (elementy drugorzędne do przyporządkowania na prawo oraz elementy drugorzędne do przyporządkowania na lewo), jak i dla nowego typu elementów (elementy główne).</span>');
           targs = '';
