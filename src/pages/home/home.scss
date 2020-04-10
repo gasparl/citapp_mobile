@@ -224,6 +224,10 @@ page-home {
     left: 50%;
     top: 68%;
   }
+
+  .rightitems_list {
+    direction: rtl;
+  }
 }
 @media screen and (orientation:landscape) {
   .alert-wrapper {
