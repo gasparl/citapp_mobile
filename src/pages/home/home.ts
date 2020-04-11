@@ -592,7 +592,7 @@ export class HomePage {
       this.duplicates = '';
       if (!this.form_items.valid) {
         this.submit_failed = true;
-        // for TESTING:
+        // TODO REMOVE - for TESTING:
         console.log('testing');
         this.auto_img();
         this.fill_demo();

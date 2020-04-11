@@ -90,7 +90,7 @@ export class CitProvider {
   no_prac_fail: boolean = true;
   text_to_show: string;
   cit_data: string =
-    ["subject_id", "cit_version", "block_number", "trial_number", "stimulus_shown", "category", "stim_type", "response_key", "rt_start", "rt_end", "incorrect", "too_slow", "isi", "date_in_ms"].join('\t') + "\n";
+    ["subject_id", "cit_version", "phase", "block_number", "trial_number", "stimulus_shown", "category", "stim_type", "response_key", "rt_start", "rt_duration", "incorrect", "too_slow", "isi", "date_in_ms"].join('\t') + "\n";
   correct_resp: string = "none";
   blocknum: number;
   num_of_blocks: any = 1;
@@ -273,7 +273,7 @@ export class CitProvider {
       }
       for (var it_type in this.rt_data_dict) {
         var rts_correct = this.rt_data_dict[it_type].filter(function(rt_item) {
-          return rt_item > 150;
+          return rt_item >= 150;
         });
         var corr_ratio = rts_correct.length / this.rt_data_dict[it_type].length;
         if (corr_ratio < min_ratio) {
@@ -377,10 +377,14 @@ export class CitProvider {
     ) {
       curr_type = this.trial_stim.type;
     }
+    // too fast: -2; too slow: -1; incorrect: 0
     if (this.crrnt_phase == 'main') {
-      if (this.rt_start <= 150) {
+      if (this.rt_start > this.response_timelimit_main) {
+        this.tooslow = 1;
+      }
+      if (this.rt_start < 150) {
         this.all_rts[curr_type].push(-2);
-      } else if (this.tooslow === 1 || this.rt_start > this.response_timelimit_main) {
+      } else if (this.tooslow === 1) {
         this.all_rts[curr_type].push(-1);
       } else if (this.incorrect === 1) {
         this.all_rts[curr_type].push(0);
@@ -391,6 +395,7 @@ export class CitProvider {
     this.cit_data +=
       [this.subj_id,
       this.cittypedict[this.cit_type],
+      this.crrnt_phase,
       this.blocknum,
       this.block_trialnum,
       this.trial_stim.item,
@@ -398,7 +403,7 @@ export class CitProvider {
       this.trial_stim.type,
       this.rspns,
       this.rt_start,
-      this.rt_end,
+      this.rt_end - this.rt_start,
       this.incorrect,
       this.tooslow,
       (this.isi_delay + this.isi_delay_minmax[0]),
@@ -585,8 +590,6 @@ export class CitProvider {
     })
     this.cit_results.ar_overall = ars.join(', ');
 
-    this.subj_id = this.subj_id + Math.random().toString().slice(3, 5); // TODO: remove
-
     this.cit_results.subj_id = this.subj_id;
     this.cit_results.cit_data = this.cit_data;
     let cdate = new Date();
@@ -621,7 +624,7 @@ export class CitProvider {
     } else {
       this.correct_resp = "resp_a";
     }
-    // this.touchsim(); // for testing -- TODOREMOVE
+    this.touchsim(); // for testing -- TODOREMOVE
     requestAnimationFrame(() => {
       if (this.trial_stim.mode === 'image') {
         this.ctx.drawImage(this.task_images[this.trial_stim.item], 0, 0);
