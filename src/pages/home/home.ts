@@ -592,10 +592,10 @@ export class HomePage {
       this.duplicates = '';
       if (!this.form_items.valid) {
         this.submit_failed = true;
-        // TODO REMOVE - for TESTING:
-        console.log('testing');
-        this.auto_img();
-        this.fill_demo();
+        // for TESTING:
+        // console.log('testing');
+        // this.auto_img();
+        // this.fill_demo();
       } else {
         clearInterval(this.checknet);
         if (this.texttrans === true) {
