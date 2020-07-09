@@ -1,14 +1,12 @@
-**Concealed Information Test application**
+### Concealed Information Test Mobile Application
+
+# README IN PROGRESS
+
 
 **Requirements and usage instructions**
 
-This application needs no installation whatsoever, it can and should be run in a _Google Chrome_ browser (v25 or above). There are no further dependencies or system requirements. The entire application works offline: no internet connection is needed.
+The APK file for Android smartphones will be available soon.
 
-The easiest way to use the application is via the [site of the repository itself](https://gasparl.github.io/citapp_pc/CITapp.html "CITapp"). (Note that no data is saved or sent anywhere on the server. In fact, once loaded into the browser, the test may again be used entirely offline as well.)
-
-However, the application can of course also be downloaded or forked and/or cloned via Git. This has three advantages. Firstly, the application will not be affected by updates. This may be desired when it is used for an experimental study where the interface and all settings are preferred to remain identical throughout the data collection. Secondly, the application will always be available offline (in case of downloading it). Thirdly, the code can then be modified for specific purposes. For example, in a simple case, the experiment title and settings may be given new default values to be used in a series of tests of a study.
-
-If the application is downloaded on a PC into a local folder (including all directories and files in the repository), it can simply be opened in Chrome (e.g., by dragging the main _CITapp.html_ into a new window or tab of the open browser). Otherwise, these files can also be uploaded to a server to make the test available online. If the application is forked or copied into a new GitHub repository, a webpage for the application may also be easily created using GitHub Pages (available under repository Settings).
 
 **Introduction**
 
@@ -105,41 +103,21 @@ Still, for an immediate informative feedback for each test in this application, 
 
 (Note that there is no strong indication of innocence: a very fast probe response is no more expected in case of innocence than in case of guilt.)
 
-**Testing and example usage**
+**Example usage**
 
 To experimentally test this application, one may for example enter the personal name (e.g., forename) of a participant as probe, and other, similar names as target and irrelevant items. (These latter items should be controlled for similarity to the extent possible; e.g., number of characters or syllables, word frequency, etc.) In this case, the participant's responses to the probe (own personal name) should be notably slower than the responses to the irrelevants (e.g., around 15-30 ms average difference). Correspondingly, the _d-CIT_ should be relatively high as well (e.g., larger than 0.3). As a control condition, one may enter irrelevant names for all item types, so that the probe, irrelevant, and target items are all in fact irrelevant to the participant. In this case, the responses to the probe should be of similar speed as the responses to the irrelevants (since, again, the probe is not relevant to the participant and is not recognized as any different from the rest of the items).
 
-However, there is also a possibility to programmatically simulate human responses. This is done by a designated testing function that simulates human keypresses whenever an item in the task is displayed. This simulation can be activated by simply entering the function _citapp\_testing\_on()_ into the Chrome DevTools Console (F12) anytime. By default, this function gives 100% correct responses in the first practice round (where this is required), and, for the rest of the task, 90% correct and 10% incorrect responses, with artificial response time randomly ranging from 350 to 600. These numbers can be changed by modifying any of the following parameters: _apptest\_correct\_ratio\_first_ (ratio from 0.0 to 1.0), _apptest\_correct\_ratio_ (ratio from 0.0 to 1.0), _apptest\_simulated\_rt\_min_ (number in ms), and _apptest\_simulated\_rt\_max_ (number in ms). For example, entering _apptest\_correct\_ratio\_first = 0.95, apptest\_correct\_ratio = 0.8, apptest\_simulated\_rt\_min = 200, apptest\_simulated\_rt\_max = 1050_ into the Console will simulate a participant who has 95% correct responses in the first practice round, and, for the rest of the task, 80% correct and 20% incorrect responses, with artificial response time randomly ranging from 200 to 1050 (hence, some of them over the response time limit of 1000, resulting in "too slow" responses). The simulation automatically proceeds to the next block (within a few seconds) as long as there are blocks left in the task. This can be changed using the parameter _apptest\_move\_to\_next\_block_ (true or false), e.g. _apptest\_move\_to\_next\_block = false_ will disable this, and the user has to press the appropriate button to start each block. By default, all items have the same simulated responses. However, guilt may be simulated using the variable _apptest\_probe\_delay_ (number in ms), that adds a specified delay whenever the response is given to the probe. E.g., _apptest\_probe\_delay = 30_ will always add 30 ms to the probe response. To stop testing (i.e., stop simulating keypresses), enter _citapp\_testing\_off()_ anytime.
-
-Two example output files are added under the _output\_examples_ folder. One is the result of simulating a guilty suspect, with settings: _apptest\_correct\_ratio\_first = 1, apptest\_correct\_ratio = 0.95, apptest\_simulated\_rt\_min = 500, apptest\_simulated\_rt\_max = 650, apptest\_probe\_delay = 25_. The resulting _d-CIT_ was 0.58, and the raw difference between probe and irrelevant RT means was 24 ms. The file name is _CIT\_app\_test\_sim\_guilty\_standard\_2block\_20181120002430.txt_. The other is the result of simulating an innocent examinee, with default settings (_apptest\_correct\_ratio\_first = 1, apptest\_correct\_ratio = 0.9, apptest\_simulated\_rt\_min = 350, apptest\_simulated\_rt\_max = 600, apptest\_probe\_delay = 0_). The resulting _d-CIT_ was 0.03, and the raw difference between probe and irrelevant RT means was 2 ms. The file name is _CIT\_app\_test\_sim\_innocent\_enhanced\_3block\_20181120003753.txt_.
-
 For convenience, there is a _Demo_ menu, under which the start page may be automatically filled by a simple button click. (The description of the example is given under the same menu.)
-
-Finally, for developement purposes, there is a _dev\_test()_ function, which executes all main functions that initiate the test, prepare the conditions, and, most importantly, generate the test items. The start page input fields are filled automatically using the _Demo_ data and settings. The function also checks whether, in case of the standard and enhanced CIT versions, the expected number of items are generated with the expected item texts (i.e., with the words that are entered on the start page). If no error occurs, the approval message is logged in the Console. Additionally, the function may be given a single argument: the number 1, the number 2, or the number 3. Entering any of these three will automatically initiate human simulation (with _apptest\_probe\_delay_ set to 25) after (and if) the previously described test was passed. Choosing _dev\_test(1)_ will complete the standard version, _dev\_test(2)_ will complete the enhanced version, and _dev\_test(3)_ will complete the no-target version. In case of no issues, the test should complete itself automatically, all the way until the end of test page.
-
-This _dev\_test()_ function automatically runs via Travis CI on each _git push_. Link and current status: [![Build Status](https://travis-ci.org/gasparl/citapp_pc.svg?branch=master)](https://travis-ci.org/gasparl/citapp_pc)
-
-**Planned features**
-
-- More settings; in particular the possibility to change any of the instruction texts
-- Graphic (pictorial) stimuli
-
-I would particularly appreciate contributions regarding:
-
-- Possibility to store settings locally
-- The automated (Travis/karma) testing should load the CITapp.html from the root (now it's implemented with a "dummy" HTML insertion)
-- More detailed end feedback; aggregated data per item type; graphs based on the results (e.g. RT density per item)
-- Translations to other languages (including their implementation in HTML)
 
 **Support**
 
-If you have any questions or find any issues (bugs, desired features), [write an email](mailto:lkcsgaspar@gmail.com) or [open a new issue](https://github.com/gasparl/citapp_pc/issues "Issues").
+If you have any questions or find any issues (bugs, desired features), [write an email](mailto:lkcsgaspar@gmail.com) or [open a new issue](https://github.com/gasparl/citapp_mobile/issues "Issues").
 
 **Citation**
 
 Cite this application as:
 
-Lukács, G. (2019). CITapp - a response time-based Concealed Information Test lie detector web application. _Journal of Open Source Software, 4_(34), 1179, https://doi.org/10.21105/joss.01179
+Lukács, G., Kleinberg, B., Kunzi, M., & Ansorge, U. (2020). Response Time Concealed Information Test on Smartphones. _Collabra: Psychology, 6_(1), 4. http://doi.org/10.1525/collabra.255
 
 **References**
 
