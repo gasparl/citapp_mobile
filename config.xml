@@ -2,7 +2,7 @@
 <widget id="io.gaspar.citapp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>CITapp</name>
     <description>CITapp: a response time-based Concealed Information Test lie detector smartphone application. This method aims to reveal whether or not a certain information detail (e.g. a photo taken from the scene of a recent burglary) is known to the tested person.</description>
-    <author email="lkcsgaspar@gmail.com" href="https://github.com/gasparl/citapp_phone/">Gaspar Lukacs</author>
+    <author email="lkcsgaspar@gmail.com" href="https://github.com/gasparl/citapp_mobile/">Gaspar Lukacs</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -116,5 +116,4 @@
     <plugin name="cordova-plugin-telerik-imagepicker" spec="^2.3.3" />
     <engine name="browser" spec="^5.0.4" />
     <engine name="ios" spec="4.5.5" />
-    <engine name="android" spec="^7.1.4" />
 </widget>

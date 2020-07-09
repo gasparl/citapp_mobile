@@ -10,10 +10,10 @@ export class TranslationProvider {
 
   lgs: object = {
     'en': 'English',
-    'cn': '中文',
+    //'cn': '中文',
     'de': 'Deutsch',
     'hu': 'Magyar',
-    'jp': '日本語',
+    //'jp': '日本語',
     'pl': 'Polski'
   };
 
