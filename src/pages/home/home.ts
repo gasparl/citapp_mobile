@@ -261,12 +261,19 @@ export class HomePage {
   }
 
   show_imgs() {
-    if (Object.keys(this.img_dict).length !== 0) {
-      Object.keys(this.img_dict).map((dkey) => {
-        if (!dkey.includes('_img')) {
-          this.display_thumbnail(dkey)
-        }
-      });
+    if (document.getElementById('filler9') != null) {
+      if (Object.keys(this.img_dict).length !== 0) {
+        Object.keys(this.img_dict).map((dkey) => {
+          if (!dkey.includes('_img')) {
+            this.display_thumbnail(dkey)
+          }
+        });
+      }
+      console.log("READY");
+    } else {
+      setTimeout(() => {
+        this.show_imgs()
+      }, 500);
     }
   }
 
