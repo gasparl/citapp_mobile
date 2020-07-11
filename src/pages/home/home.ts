@@ -269,7 +269,6 @@ export class HomePage {
           }
         });
       }
-      console.log("READY");
     } else {
       setTimeout(() => {
         this.show_imgs()
