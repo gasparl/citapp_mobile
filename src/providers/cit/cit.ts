@@ -267,7 +267,7 @@ export class CitProvider {
       }
     } else {
       if (this.blocknum === 3) {
-        min_ratio = 0.5
+        min_ratio = 0.4
       } else {
         min_ratio = 0.8
       }
