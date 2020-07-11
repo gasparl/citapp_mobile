@@ -50,6 +50,8 @@ The displayed images will always have equal height and width. Therefore, to reta
 
 Translations of the original English for all test instructions and filler items are currently available in German, Hungarian, and Polish. (Apart from the CIT texts from test start to test completion, the app interface language always stays English.) The translation process is [fairly straightforward](https://github.com/gasparl/citapp_mobile/blob/master/src/providers/translations/translations.ts); if you would like to contribute with an additional language, don't hesitate to [contact me](mailto:lkcsgaspar@gmail.com). (Japanese and Chinese translations are planned in the near future.)
 
+To load the default fillers in any given language, press RESTORE DEFAULT under the FILLERS tab. General familiarity-related fillers in the given language will then be loaded.
+
 ### Consent for Data Sharing
 
 To facilitate informed consent for data sharing, a special option is included to present the examinee with a brief "Data sharing consent form" within the test. (This is of course not needed if a separate consent form is used that includes data sharing statement.) The following options are available for selection "Yes", "No", "Yes but without items". All or any of these can be selected. If none of the options is selected (default), this entire form will be omitted, and after pressing START the first CIT instructions are presented. Otherwise "Yes" means that the examinee can opt to allow sharing (anonymously) all test data; "Yes but without items" means that the examinee can opt to allow sharing all test data except the items presented during the test (probe, target, irrelevants); "No" means that the examinee can opt to not allow sharing any data.
