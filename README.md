@@ -4,9 +4,13 @@
 
 This app implements the response time Concealed Information Test (CIT) on smartphones. The CIT aims to reveal whether or not a certain information detail (e.g. a photo taken from the scene of a recent burglary) is known to the tested person.
 
+### Installation and Requirements
+
 Currently, the app is only built for _Android_ (i.e., smartphones with Andriod OS). It can be installed via Google Play freely (no fees, no ads): https://play.google.com/store/apps/details?id=io.gaspar.citapp
 
 (Alternatively, the APK file is also directly available via https://osf.io/fjvna/, under the "CITapp" folder.)
+
+It should run on any on any modern Android phone (4.4 [KitKat] or newer Andriod OS).
 
 ### Introduction
 
