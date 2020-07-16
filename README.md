@@ -158,3 +158,6 @@ Lukács, G., Kleinberg, B., & Verschuere, B. (2017). Familiarity-related fillers
 Noordraven, E., & Verschuere, B. (2013). Predicting the sensitivity of the reaction time-based Concealed Information Test: Detecting deception with the Concealed Information Test. _Applied Cognitive Psychology, 27_(3), 328–335. https://doi.org/10.1002/acp.2910
 
 Seymour, T. L., Seifert, C. M., Shafto, M. G., & Mosmann, A. L. (2000). Using response time measures to assess "guilty knowledge". _Journal of Applied Psychology, 85_(1), 30–37. https://doi.org/10.1037//0021-9010.85.1.30
+
+[![DOI](https://zenodo.org/badge/219313499.svg)](https://zenodo.org/badge/latestdoi/219313499)
+
