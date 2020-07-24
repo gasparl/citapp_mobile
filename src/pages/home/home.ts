@@ -632,6 +632,8 @@ export class HomePage {
 
   init_cit(chosen) {
     this.citP.consented = chosen;
+    this.citP.cit_data =
+      ["subject_id", "cit_version", "phase", "block_number", "trial_number", "stimulus_shown", "category", "stim_type", "response_key", "rt_start", "rt_duration", "incorrect", "too_slow", "isi", "date_in_ms"].join('\t') + "\n";
     this.create_stim_base();
     this.to_img();
   }

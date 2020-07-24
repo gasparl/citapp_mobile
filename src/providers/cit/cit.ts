@@ -89,8 +89,7 @@ export class CitProvider {
   rspns: string;
   no_prac_fail: boolean = true;
   text_to_show: string;
-  cit_data: string =
-    ["subject_id", "cit_version", "phase", "block_number", "trial_number", "stimulus_shown", "category", "stim_type", "response_key", "rt_start", "rt_duration", "incorrect", "too_slow", "isi", "date_in_ms"].join('\t') + "\n";
+  cit_data: string;
   correct_resp: string = "none";
   blocknum: number;
   num_of_blocks: any = 1;

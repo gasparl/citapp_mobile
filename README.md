@@ -60,9 +60,12 @@ To load the default fillers in any given language, press RESTORE DEFAULT under t
 
 ### Consent for Data Sharing
 
-To facilitate informed consent for data sharing, a special option is included to present the examinee with a brief "Data sharing consent form" within the test. (This is of course not needed if a separate consent form is used that includes data sharing statement.) The following options are available for selection "Yes", "No", "Yes but without items". All or any of these can be selected. If none of the options is selected (default), this entire form will be omitted, and after pressing START the first CIT instructions are presented. Otherwise "Yes" means that the examinee can opt to allow sharing (anonymously) all test data; "Yes but without items" means that the examinee can opt to allow sharing all test data except the items presented during the test (probe, target, irrelevants); "No" means that the examinee can opt to not allow sharing any data.
+To facilitate informed consent for data sharing, a special option is included to present the examinee with a brief "Data sharing consent form" within the test. (This is of course not needed if a separate consent form is used that includes data sharing statement.) The following options are available for selection "Yes", "No", "Yes but without items". All or any of these can be selected. If none of the options is selected (default), this entire form will be omitted, and after pressing START the first CIT instructions are presented. Otherwise "Yes" means that the examinee can opt to allow sharing (anonymously) all test data; "Yes but without items" means that the examinee can opt to allow sharing all test data except the main items presented during the test (probe, target, irrelevants); "No" means that the examinee can opt to not allow sharing any data.
 
 All related texts can be found in [this file](https://github.com/gasparl/citapp_mobile/blob/master/src/providers/translations/translations.ts) ("consent", "consentitems_chosen", "consentitems_conf").
+
+The choice is recorded in the filename: "noconsent" when no consent form was presented, "fullshare" if the examinee consented to fully sharing all test data, "noitemshare" if the examinee consented to sharing test data without main items, and "noshare" if the examinee did not consent to data sharing. (So, for example, the filename could be "CIT_demo_suspect_01_enhanced_1block_noconsent_202007170957.txt".)
+
 
 ### Task Structure
 
