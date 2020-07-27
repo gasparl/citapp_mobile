@@ -42,7 +42,7 @@ The main items (probe, target, irrelevants) have to be given under the CORE tab,
 
 #### "Irrelevants"
 
-Importantly, the so-called "irrelevants" are not designated as such in the interface. Instead, there are five "probes": Probe 1, Probe 2, Probe 3, Probe 4, and Probe 5. The "real probe" (the item suspected to be recognized examinees) may be given as any of these potential probes (1-5). In the end the results will be evaluated in a way that each of the five potential probes are assessed separately as "real probe" versus the rest of the probes that are for this purpose designated as "irrelevants". The reason for this is that the single "real" probe is not always known in advance: for example, in case of an upcoming terrorist attack, a suspected terrorist may be shown several potential (suspected) locations for the attack, and the one item with the slowest responses may be designated as the "real probe" after the test is completed.
+Importantly, the so-called "irrelevants" are not designated as such in the interface. Instead, there are five "probes": Probe 1, Probe 2, Probe 3, Probe 4, and Probe 5. The "real probe" (the item suspected to be recognized by a given examinee) may be given as any of these potential probes (1-5). In the end the results will be evaluated in a way that each of the five potential probes are assessed separately as "real probe" versus the rest of the probes that are for this purpose designated as "irrelevants". The reason for this is that the single "real" probe is not always known in advance: for example, in case of an upcoming terrorist attack, a suspected terrorist may be shown several potential (suspected) locations for the attack, and the one item with the slowest responses may be designated as the "real probe" after the test is completed.
 
 #### Images
 
@@ -107,6 +107,8 @@ _**subject\_id**: The subject identification text as given on the starting page.
 
 _**cit\_version**: The CIT version as selected on the starting page._
 
+_**phase**: Practice rounds ("practice" and, for rounds where no failure is allowed, "practice_strict") and the longer main blocks that are to be evaluated ("main")._
+
 _**block\_number**: The number of the block._
 
 _**trial\_number**: The number of the trial._
@@ -117,11 +119,11 @@ _**category**: Either "main\_item" (probe, irrelevant, or target), or "filler" (
 
 _**stim\_type**: More specific type: probe, irrelevant, target, familiar-referring filler, or unfamiliar-referring filler._
 
-_**response\_key**: The response key that was used ("e" or "i"), regardless whether it was correct or not._
+_**response\_key**: The response key (touchscreen button imitating key) that was used ("resp_a" for left-side button and "resp_b" for right-side button), regardless whether it was correct or not._
 
-_**rt_start**: The keypress time (from the start of the presentation of the stimulus until the pressing of the response key – conventional response time); in ms._
+_**rt_start**: The key touch time (from the start of the presentation of the stimulus until the touching of the response key – conventional response time); in ms._
 
-_**rt_end**: The "keyup" time (from the start of the presentation of the stimulus until the releasing of the response key); in ms._
+_**rt_duration**: The duration of holding down the key (from key touch until the "touch end", i.e. the releasing of the key); in ms._
 
 _**incorrect**: Whether the response was correct: 1 for incorrect, 0 for correct._
 
