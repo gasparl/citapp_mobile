@@ -1,3 +1,5 @@
+// this file contains the CIT mechanism (task, responses, etc.)
+
 import { Injectable } from '@angular/core';
 import { BackgroundMode } from '@ionic-native/background-mode';
 import { File } from '@ionic-native/file';
@@ -12,6 +14,7 @@ export class CitProvider {
   content: any;
 
   /*
+  // the function below simulates keypresses for testing
   touchsim() {
     var info = this.trial_stim.type + " (" + this.trial_stim.item + ")";
     var rt_sim = this.itemgenP.randomdigit(600, 830);
@@ -54,13 +57,13 @@ export class CitProvider {
   current_div: string = "div_start"; // ddd default: "div_start", div_settings, div_dems, div_cit_main, div_end
   current_segment: string = 'main';
   current_menu: string = '';
-  false_delay: number = 400;
-  tooslow_delay: number = 400;
-  isi_delay_minmax: number[] = [300, 700];
+  false_delay: number = 400; // duration of "False" message
+  tooslow_delay: number = 400; // duration of "Too Slow" message
+  isi_delay_minmax: number[] = [300, 700]; // min/max of ISI, in ms
   response_timelimit: number;
-  response_timelimit_main: number = 900;
+  response_timelimit_main: number = 1000; // time limit in the main task, in ms
   isi_delay: number = 99999;
-  cit_type: any = 0;
+  cit_type: any = 0; // default CIT type, see below
   cittypedict: any = {
     '0': 'enhanced',
     '1': 'standard',
@@ -126,6 +129,7 @@ export class CitProvider {
     public itemgenP: ItemgenProvider
   ) { }
 
+  // switching pages
   pointev: any = {};
   switch_divs(div_to_show, goto = false) {
     this.current_div = div_to_show;
@@ -144,6 +148,7 @@ export class CitProvider {
     this.content.scrollToTop(0);
   }
 
+  // starting the CIT
   task_start() {
     this.backgroundMode.setDefaults({
       text: "Test in progress!",
@@ -152,7 +157,7 @@ export class CitProvider {
     this.itemgenP.stim_base_p = JSON.parse(JSON.stringify(this.stim_base));
   }
 
-
+  // listing items in the instructions
   list_items(dicts) {
     let textitems = dicts.filter(dct => dct.mode === 'text').map(dct => {
       return '<li>' + dct.item + '</li>';
@@ -168,6 +173,7 @@ export class CitProvider {
     }
   }
 
+  // setting the block texts in the specific language
   set_block_texts() {
     let trefs = this.list_items(this.targetrefs);
     let nontrefs = this.list_items(this.nontargrefs);
@@ -177,10 +183,12 @@ export class CitProvider {
     this.block_text = this.block_texts[1];
   }
 
+  //capitalize texts
   capitalize(str1) {
     return str1.charAt(0).toUpperCase() + str1.slice(1);
   }
 
+  //calculate sum
   sum(array_to_sum) {
     var sum = 0;
     array_to_sum.forEach(function(item) {
@@ -201,6 +209,8 @@ export class CitProvider {
       return sq + Math.pow(n - m, 2);
     }, 0) / (array_for_sd.length - 1));
   };
+
+  //calculate pooled sd
   sd_pooled(var1, var2) {
     let n1 = var1.length
     let n2 = var2.length
@@ -208,6 +218,7 @@ export class CitProvider {
     return Math.sqrt(nom / (n1 + n2 - 2))
   }
 
+  // neatly formatted current date
   neat_date() {
     var m = new Date();
     return m.getFullYear() + "" +
@@ -218,6 +229,7 @@ export class CitProvider {
       ("0" + m.getSeconds()).slice(-2);
   }
 
+  // showing "Too slow"
   flash_too_slow() {
     this.feed_text = this.trP.feedtooslo[this.trP.lang];
     setTimeout(function() {
@@ -229,6 +241,7 @@ export class CitProvider {
     }.bind(this), this.tooslow_delay);
   }
 
+  // showing "False"
   flash_false() {
     this.feed_text = this.trP.feedwrong[this.trP.lang];
     setTimeout(function() {
@@ -239,6 +252,7 @@ export class CitProvider {
     }.bind(this), this.false_delay);
   }
 
+  // practice task interruption after no correct response ("strict practice")
   prac_fail() {
     if (this.crrnt_phase === 'practice_strict') {
       this.teststim = [];
@@ -246,6 +260,7 @@ export class CitProvider {
     }
   }
 
+  // displaying ISI (empty screen) before item display
   isi() {
     this.isi_delay = this.itemgenP.randomdigit(1, this.isi_delay_minmax[1] - this.isi_delay_minmax[0]);
     setTimeout(function() {
@@ -253,6 +268,7 @@ export class CitProvider {
     }.bind(this), this.isi_delay);
   }
 
+  // evaluation of practice task: whether it needs repetition
   practice_eval() {
     let min_ratio;
     var is_valid = true;
@@ -296,6 +312,7 @@ export class CitProvider {
     return is_valid;
   }
 
+  // initiate next block's trials
   start_trials() {
     setTimeout(function() {
       this.next_trial()
@@ -303,6 +320,8 @@ export class CitProvider {
   }
 
   block_text: string = '';
+
+  // run next trial if available, otherwise set up next block
   next_trial() {
     if (this.teststim.length > 0) {
       this.tooslow = 0;
@@ -315,6 +334,8 @@ export class CitProvider {
       this.text_to_show = this.trial_stim.item;
       this.isi();
     } else {
+      // if practice task, check for sufficient correct responses via practice_eval()
+      // go to next block if passed, otherwise give feedback and repeat
       if ((this.blocknum > 3) || (this.blocknum > 2 && this.cit_type !== 0) || this.practice_eval()) {
         this.blocknum++;
         if (this.blocknum <= (this.num_of_blocks + 2) ||
@@ -344,6 +365,7 @@ export class CitProvider {
     }
   }
 
+  // wait after response to potentially record press release ("keyup")
   post_resp_hold() {
     this.ctx.clearRect(0, 0, this.image_width, this.image_width);
     this.stimulus_text = "";
@@ -353,6 +375,7 @@ export class CitProvider {
     }.bind(this), this.isi_delay_minmax[0]);
   }
 
+  // save all trial details in a new line and store RT in rt_data_dict for evaluation later
   add_response() {
     var curr_type;
     var act_type = this.trial_stim.type.replace(/[0-9]$/, '');
@@ -412,7 +435,7 @@ export class CitProvider {
     this.next_trial();
   }
 
-
+  // set up the settings of the upcoming block and display related instructions
   nextblock() {
     this.crrnt_phase = 'practice';
     this.bg_color = "#fff";
@@ -461,12 +484,14 @@ export class CitProvider {
     this.switch_divs('div_blockstart');
   }
 
+  // show the "starting trial" before the first trial ("touch to begin")
   runblock() {
     this.bg_color = "#000000";
     this.switch_divs('div_cit_main')
     this.visib.start_text = true;
   }
 
+  // record response (touch start) in an ongoing CIT
   touchstart(ev, response_side) {
     if (this.listen === true) {
       this.rt_start = performance.now() - this.start;
@@ -481,6 +506,7 @@ export class CitProvider {
       }
     }
   }
+  // record response ending (touch end) in an ongoing CIT
   touchend(ev, end_resp_side) {
     if (this.listn_end == true && end_resp_side == this.rspns) {
       this.rt_end = performance.now() - this.start;
@@ -490,6 +516,7 @@ export class CitProvider {
 
   // DATA STORING
 
+  // at the end of CIT, save data to file
   store_data() {
     this.get_results();
     this.file.writeFile(this.path, this.cit_results.file_name, this.cit_results.cit_data).then(value => {
@@ -502,6 +529,7 @@ export class CitProvider {
     this.dataShare.storage.set('test-' + somecode, this.trP.lang + this.neat_date().slice(0, 8));
   }
 
+  // the code below is for the detailed display of outcomes in the app interface
   cit_results: any = {
     "probe1": {},
     "probe2": {},
@@ -525,6 +553,7 @@ export class CitProvider {
       "probe5": {}
     };
     let allmain = [];
+    // aggregated data per item (each potential probe)
     Object.keys(this.cit_results).map((dkey) => {
       let probe = this.all_rts[dkey];
       allmain = allmain.concat(probe);
@@ -615,8 +644,7 @@ export class CitProvider {
     this.dataShare.storage.set('reslts', this.stored_results);
   }
 
-  // display
-
+  // display given item (text or image) and wait for response
   item_display() {
     if (this.trial_stim.type === "target" || this.trial_stim.type.slice(0, 9) === "targetflr") {
       this.correct_resp = "resp_b";
