@@ -280,7 +280,7 @@ export class ItemgenProvider {
   }
 }
 
-// Detailed explanation of sequences follow below.
+// Detailed explanation of sequence randomizations follow below.
 //
 // For the filler practice, all fillers were included twice, all in random order with the only restriction that there were at least four trials between any two trials with identical words.
 //
