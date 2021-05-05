@@ -1,3 +1,8 @@
+// this file contains all code for CIT stimulus sequence generation
+// all these sequences are generated as lists of dictionaries
+// where each dictionary contains the information of a single trial
+// (see bottom long comment for detailed explanation of randomization)
+
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -5,12 +10,12 @@ export class ItemgenProvider {
   stim_base_p: any[];
   constructor() { }
 
-  // stimulus sequence generation
-
+  // random digit generation
   randomdigit(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+  // shuffling any list randomly
   shuffle(arr) {
     let array = JSON.parse(JSON.stringify((arr)));
     var newarr = [];
@@ -28,10 +33,12 @@ export class ItemgenProvider {
     return newarr;
   }
 
+  // random choice from a list
   rchoice(array) {
     return array[Math.floor(array.length * Math.random())];
   }
 
+  // pythonic number list generator
   range(start, end) {
     var r = [];
     for (var i = start; i < end; i++) {
@@ -40,6 +47,7 @@ export class ItemgenProvider {
     return r;
   }
 
+  // all permutations of a list
   permute(to_permutate) {
     var length = to_permutate.length,
       result = [to_permutate.slice()],
@@ -63,6 +71,7 @@ export class ItemgenProvider {
     return result;
   }
 
+  // generate a random sequence of all filler items
   filler_items(targetrefs, nontargrefs) {
     console.log('filler_items()');
     var blck_itms_temp = JSON.parse(JSON.stringify(targetrefs.concat(nontargrefs, targetrefs, nontargrefs))); // fillers x2
@@ -97,6 +106,7 @@ export class ItemgenProvider {
     return (stim_dicts_f); // return final list (for blck_items var assignment)
   }
 
+  // used to check whether similar trial exists nearby
   diginto_dict(dcts, indx, key_name, min_dstnc) {
     var strt;
     if (indx - min_dstnc < 0) { // if starting index is negative, it counts from the end of the list; thats no good
@@ -108,6 +118,7 @@ export class ItemgenProvider {
     return (all_vals); // return all values for the specified dict key within the specified distance (from the specified dictionary)
   }
 
+  // generate items for practice phases
   practice_items(targetrefs, nontargrefs) {
     console.log('practice_items()');
     var blck_itms_temp = JSON.parse(JSON.stringify(targetrefs.concat(nontargrefs))); // get fillers
@@ -147,6 +158,7 @@ export class ItemgenProvider {
     return (stim_dicts_f); // return final list (for blck_items var assignment)
   }
 
+  // sequence for main items only, in groups of 6
   main_sequences(block_stim_base) {
     var items_ordered = [];
     var prev_last = ''; // prev order is the item order of the previous trial sequence
@@ -163,12 +175,13 @@ export class ItemgenProvider {
     return (items_ordered);
   }
 
+  // simply returns shuffled main items (for strict practice)
   main_items(block_stim_base) {
     return this.shuffle(block_stim_base);
   }
 
+  // randomization of filler items
   zip: any = (...rows) => [...rows[0]].map((_, c) => rows.map(row => row[c]));
-
   filler_randomized(targetrefs, nontargrefs) { // 6 possible filler orders
     var targetrefs_perm = this.shuffle(this.permute(JSON.parse(JSON.stringify(targetrefs)))); // 3 x 2 = 6 arrangements
     var nontarg_temp = JSON.parse(JSON.stringify(nontargrefs));
@@ -255,12 +268,36 @@ export class ItemgenProvider {
     return ([].concat.apply([], final_item_order));
   }
 
+  // return full final sequence with fillers
   fulltest_items(targetrefs, nontargrefs) {
     console.log('fulltest_items()');
     return (this.add_fillers(this.stim_base_p, targetrefs, nontargrefs));
   }
+  // return full final sequence without fillers
   fulltest_standard_items() {
     console.log('fulltest_standard_items()');
     return ([].concat.apply([], this.main_sequences(this.stim_base_p)));
   }
 }
+
+// Detailed explanation of sequences follow below.
+//
+// For the filler practice, all fillers were included twice, all in random order with the only restriction that there were at least four trials between any two trials with identical words.
+//
+// For the final practice, all items in the entire task were included once each, all in random order but with the restriction that there were at least one trial between any of the following types of items: (a) nontarget-side fillers, (b) target-side fillers, (c) probes, (d) targets. In order to treat irrelevants exactly as probes, the four irrelevant items in each category were each assigned a number (from 1 to 4), and items with the same number also always had at least one trial between them.
+//
+//
+// The order of the main (probe, target, irrelevant) items was randomized in groups: first, all five or six items (one probe, four irrelevants, and, where applicable, one target) in the given category were presented in a random order, then the same six items were presented in another random order - but with the restriction that the first item in the next group was never the same as the last item in the previous group.
+// Fillers were placed among these items in a random order, but with the restrictions that an filler trial was never followed by another filler trial, and each of the nine fillers (three self-referring, six other-referring) preceded each of the three probes, three targets, and 12 irrelevants exactly one time. (Thus, 9 × 18 = 162 fillers were presented, and 162 out of the 324 other items were preceded by an filler.)
+//
+// The fillers are added the following way.
+// --- In order to have a balanced distribution of given filler items, we prearrange the order in which they preceed each given item in the task. ---
+// (1) All six possible permutations of the three target-side items are calculated.
+// (2) All six possible permutations for each of two random three-item subsets of the nontarget-side items are calculated. Then six from each type of permutationed subsets of threes are joined together in random pairs, to obtain six different groups of six - but half of these groups always starting with the one given three nontarget-side items, and the other half with the other given three.
+// (3) The final six permutations obtained for familiar-items (point 1) and unfamiliar-items (point 2) are paired randomly. In each of these pairs, the familiar items are inserted among the unfamiliar in a way that there is always at least one unfamiliar between two familiar items. Each of these six combinations of all filler items will precede, throughout the task, one specific main item, in the precise order that has been determined by the described procedure.
+// --- In order to have equal amount of filler items preceding each item, and to have balanced distribution of preceded and not preceded items, prearrange an order "yes" and "no" values representing items preceded and items not preceded, respectively). ---
+// (4) Nine different permutations of three "yes" and three "no" values are calculated, resulting in 9 lists, each with different orders of 3 "yes" and 3 "no" values. Each such "sequence of 6" represents a groupings of all 6 main items as described in the randomization procedure of main items.
+// (5) We take each 3 (i.e. 3 groups of 3 lists) out of these 9 lists (resulting from permutations), and randomly insert among these 3 lists additional 3 lists that each contain the exact opposite order as one other list in the original 3. (E.g. ['n','y','y','n','n','y'] becomes ['y','n','n','y','y','n']). Thus we obtain 3 lists with 3+3 = 6 items (where each item is a possible order of 6 'y' or 'n').
+// (6) The 3 lists of 6 order items are concatenated, giving a full list of 18 possible orders. Then, each main item is assigned the "yes" or "no" value from a specific index from each of the 18 lists of 6 'y'/'n' values. For example, the probe item gets every first value ("yes" or "no") from each of the 18 orders, the target gets every second value, the first irrelevant gets every third value, etc. Since, for each order of 6, there is also an exact reverse order of 6, each item will have equal numbers of "yes" and "no" values assigned (namely, 9 from each). Consequently, each main item will be preceded or not preceded by fillers based on the given assigned order of "yes" and "no" values.
+//
+// The fillers are finally inserted to the given places (points 4-6) in the given order (points 1-3).
