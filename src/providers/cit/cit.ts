@@ -55,7 +55,7 @@ export class CitProvider {
 
   subj_id: string = '';
   current_div: string = "div_start"; // ddd default: "div_start", div_settings, div_dems, div_cit_main, div_end
-  current_segment: string = 'main';
+  current_segment: string = 'main'; // initial menu to be displayed in the interface
   current_menu: string = '';
   false_delay: number = 400; // duration of "Wrong" message
   tooslow_delay: number = 400; // duration of "Too Slow" message
@@ -63,13 +63,13 @@ export class CitProvider {
   response_timelimit: number;
   response_timelimit_main: number = 1000; // time limit in the main task, in ms
   isi_delay: number = 99999;
-  cit_type: any = 0; // default CIT type, see below
+  cit_type: any = 0; // default CIT type (according to cittypedict)
   cittypedict: any = {
     '0': 'enhanced',
     '1': 'standard',
     '2': 'notarget'
   };
-  bg_color: string = "#fff";
+  bg_color: string = "#fff"; // background color during CIT
   feed_text: string = "";
   visib: any = { start_text: true };
   block_texts: string[];
@@ -157,7 +157,7 @@ export class CitProvider {
     this.itemgenP.stim_base_p = JSON.parse(JSON.stringify(this.stim_base));
   }
 
-  // listing items in the instructions
+  // formatting list of items in the instructions into a comma-separated text
   list_items(dicts) {
     let textitems = dicts.filter(dct => dct.mode === 'text').map(dct => {
       return '<li>' + dct.item + '</li>';

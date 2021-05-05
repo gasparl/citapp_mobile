@@ -1,3 +1,5 @@
+// this file contains the general interface and basic mechanics of the application
+
 import { Component, ViewChild, ElementRef } from "@angular/core";
 import { Slides, Content, AlertController } from 'ionic-angular';
 import { NavController, NavParams } from "ionic-angular";
@@ -20,6 +22,7 @@ import { Clipboard } from '@ionic-native/clipboard/';
   templateUrl: "home.html"
 })
 export class HomePage {
+  // setting up the canvas for eventual image display (if any)
   @ViewChild(Slides) slides: Slides;
   @ViewChild(Content) cntent_temp: Content;
   canv_temp: ElementRef;
@@ -34,6 +37,7 @@ export class HomePage {
   }
 
   // /*
+  // below is a mechanism for a custom interactive console for testing/debugging
   to_exec: any = 'this.';
   mycl: any;
   onChange(ee) {
@@ -44,6 +48,7 @@ export class HomePage {
   }
   //*/
 
+  // global variables
   initslide: any = 0;
   cit_items: string[] = [];
   form_items: FormGroup;
@@ -56,6 +61,7 @@ export class HomePage {
   on_device: boolean;
   submit_failed: boolean = false;
   consentitems: string;
+  // assign filler words in the given language
   targetref_words: string[] = JSON.parse(JSON.stringify(this.trP.targetref_words_orig[this.trP.lang]));
   nontargref_words: string[] = JSON.parse(JSON.stringify(this.trP.nontargref_words_orig[this.trP.lang]));
 
@@ -76,6 +82,7 @@ export class HomePage {
     public alertCtrl: AlertController
   ) {
     this.load_from_device();
+    // validation of user inputs
     let validator_dict = {
       sub_id: [
         "",
@@ -92,11 +99,13 @@ export class HomePage {
       ])
     ]);
     this.form_items = formBuilder.group(validator_dict);
+    // get stored images (if any)
     this.dataShare.storage.get('imgs').then((cntent) => {
       if (cntent) {
         dataShare.stored_images = cntent;
       }
     });
+    // get stored previous results (if any)
     this.dataShare.storage.get('reslts').then((cntent) => {
       if (cntent) {
         this.citP.stored_results = cntent;
@@ -108,6 +117,7 @@ export class HomePage {
   checknet: any;
   ionViewDidLoad() {
     this.citP.content = this.cntent_temp;
+    // basic settings (hiding bars etc) when platform loaded
     this.platform.ready().then(() => {
       this.on_device = this.platform.is("cordova");
       if (this.on_device) {
@@ -138,6 +148,7 @@ export class HomePage {
     return this._sanitizer.bypassSecurityTrustHtml(html);
   }
 
+  // arranges display of CIT results in the HTML
   dictitems = function(dict) {
     try {
       let ordered_vals = [];
@@ -151,6 +162,7 @@ export class HomePage {
     }
   }
 
+  // tries to send basic statistics for each completed test to database
   send_single_stat = function(test_info, key_to_del) {
     this.http.post('https://homepage.univie.ac.at/gaspar.lukacs/x_citapp/x_citapp_stat.php',
       JSON.stringify({
@@ -169,7 +181,6 @@ export class HomePage {
           console.log('Request failed: ', err);
         });
   }
-
   send_stat = function() {
     this.dataShare.storage.forEach((value, key) => {
       if (key.slice(0, 4) == 'test') {
@@ -178,6 +189,7 @@ export class HomePage {
     });
   }
 
+  // store settings on device (on corresponding button click)
   store_on_device = async function() {
     await this.dataShare.storage.set('local', {
       'subject_id': this.citP.subj_id,
@@ -217,6 +229,7 @@ export class HomePage {
     } catch { }
   }
 
+  // load settings from device (on corresponding button click)
   load_from_device = function() {
     try {
       this.dataShare.storage.get('local').then((cntent) => {
@@ -260,6 +273,8 @@ export class HomePage {
     }
   }
 
+
+  // display image thumbnails (of loaded images)
   show_imgs() {
     if (document.getElementById('filler9') != null) {
       if (Object.keys(this.img_dict).length !== 0) {
@@ -276,6 +291,8 @@ export class HomePage {
     }
   }
 
+
+  // store settings in online database (on corresponding button click)
   settings_storage = function(datapost) {
     console.log('settings_storage starts...');
     if (datapost == 'yes') {
@@ -354,6 +371,7 @@ export class HomePage {
       });
   }
 
+  // validation check for English characters
   valid_chars(event: any) {
     const pattern = /[a-zA-Z0-9_]/;
     let inputChar = String.fromCharCode(event.charCode);
@@ -371,6 +389,7 @@ export class HomePage {
     }
   }
 
+  // validate email format
   mails: string = '';
   emails_input(event: any) {
     const pattern = /[a-zA-Z0-9\s;_@.!]/;
@@ -392,6 +411,7 @@ export class HomePage {
   //   this.mails_sending = this.mails_sending.substr(2)
   // }
 
+  // send data via email (on corresponding button click)
   sendviaapp() {
     let email = {
       to: this.mails,
@@ -405,6 +425,7 @@ export class HomePage {
     this.emailComposer.open(email);
   }
 
+  // copy data to clipboard (on corresponding button click)
   to_clipboard() {
     this.clipboard.copy(this.citP.cit_results.cit_data);
     try {
@@ -415,6 +436,7 @@ export class HomePage {
     } catch { }
   }
 
+  // auto-uppercase setting for stimulus display
   texttrans: boolean = true;
   change_texttrans() {
     if (this.texttrans === true) {
@@ -424,7 +446,7 @@ export class HomePage {
     }
   };
 
-
+  // changing menus with popup
   seg_values: string[] = ['main', 'fillers', 'settings', 'autofill', 'start'];
   pop_menu(myEvent) {
     let popover = this.popoverCtrl.create(PopoverItems);
@@ -438,6 +460,7 @@ export class HomePage {
     })
   }
 
+  // removing stored CIT results
   results_remove(to_del) {
     let delmsg;
     if (to_del == 'all') {
@@ -473,6 +496,7 @@ export class HomePage {
     alert.present();
   }
 
+  // display previous CIT results
   show_res(res_id, menu) {
     this.citP.cit_results = this.citP.stored_results[res_id];
     this.citP.current_menu = menu;
@@ -480,12 +504,14 @@ export class HomePage {
     this.citP.content.scrollToTop(0);
   }
 
+  // menu switch
   goto_menu(menu_name) {
     this.citP.current_menu = menu_name;
     this.citP.current_segment = 'menus';
     this.citP.content.scrollToTop(0);
   }
 
+  // image loading (via popover_img.ts)
   pop_imgs(myEvent, parent_id) {
     let popover = this.popoverCtrl.create(PopoverImg,
       {}, // nothing to pass
@@ -500,6 +526,7 @@ export class HomePage {
     });
   }
 
+  // add chosen image as given item
   add_img(img_key, filename) {
     this.img_dict[img_key] = filename;
     this.image_names();
@@ -507,6 +534,7 @@ export class HomePage {
     this.display_thumbnail(img_key);
   }
 
+  // display specific image as thumbnail
   display_thumbnail(img_key) {
     let img = new Image;
     img.style.height = "9vw";
@@ -520,6 +548,7 @@ export class HomePage {
     element.appendChild(img);
   }
 
+  // add remove specific image
   remove_img_el(parent_id) {
     if (this.img_dict[parent_id] !== undefined) {
       this.img_dict[parent_id] = '';
@@ -532,6 +561,7 @@ export class HomePage {
     }
   }
 
+  // (re)set image names after adding/removing
   image_names() {
     this.cit_items[0] = (this.img_dict.target === undefined) ? this.cit_items[0] : this.img_dict.target;
     this.cit_items[1] = (this.img_dict.probe1 === undefined) ? this.cit_items[1] : this.img_dict.probe1;
@@ -551,6 +581,7 @@ export class HomePage {
   }
 
 
+  // load settings from online database (on corresponding button click)
   load_settings(loaded_data) {
     try {
       let data_dict = JSON.parse(loaded_data);
@@ -585,6 +616,7 @@ export class HomePage {
     }
   };
 
+  // on start-click, begin CIT using all given settings
   save_on_citstart: boolean = true;
   duplicates: string = '';
   initials() {
@@ -630,6 +662,7 @@ export class HomePage {
     }
   }
 
+  // initiate data and create basic items
   init_cit(chosen) {
     this.citP.consented = chosen;
     this.citP.cit_data =
@@ -638,6 +671,7 @@ export class HomePage {
     this.to_img();
   }
 
+  // set images (if any), then prepare block texts and start CIT (see cit.js)
   async to_img() {
     await Promise.all(this.citP.stim_base.map(async (dict) => {
       if (dict['imgurl'] !== null) {
@@ -662,6 +696,7 @@ export class HomePage {
     this.citP.nextblock();
   }
 
+  // load image from source URL
   imgurl(base64) {
     return new Promise((resolve, reject) => {
       let img = new Image();
@@ -670,7 +705,7 @@ export class HomePage {
     })
   }
 
-
+  // set default items/settings (on corresponding clicks)
   default_fillers() {
     Object.keys(this.img_dict).map((key) => {
       if (key.slice(0, 6) === 'filler') {
@@ -698,7 +733,6 @@ export class HomePage {
     this.trP.lang = 'en';
     this.mails = '';
   }
-
   fill_demo = function() {
     this.default_core();
     this.citP.subj_id = 'CIT_demo_suspect_01';
@@ -716,6 +750,7 @@ export class HomePage {
     }, 2000);
   }
 
+  // autofill images (on corresponding click)
   auto_img() {
     let feed;
     let added = [];
@@ -747,8 +782,7 @@ export class HomePage {
     } catch { }
   }
 
-  // item generation
-
+  // creating basic items (probes, fillers)
   create_stim_base() {
     this.citP.blocknum = 1;
     this.citP.stim_base = [];
@@ -768,6 +802,8 @@ export class HomePage {
       "nontargflr": [],
       "target": []
     };
+
+    // get probes ("CIT items") and create basic their set of trials
     var items_array = JSON.parse(JSON.stringify(this.cit_items));
     items_array.forEach((item, num) => {
       let tempdict: any = {
@@ -800,6 +836,7 @@ export class HomePage {
       }
     });
 
+    // create basic set of targetside trials
     this.targetref_words.forEach((ref_item, num) => {
       let tempdict: any = {
         'item': ref_item,
@@ -815,6 +852,8 @@ export class HomePage {
       }
       this.citP.targetrefs.push(tempdict);
     });
+
+    // create basic set of nontargetside trials
     this.nontargref_words.forEach((ref_item, num) => {
       let tempdict: any = {
         'item': ref_item,
@@ -832,6 +871,7 @@ export class HomePage {
     });
   }
 
+  // go to settings slide clicked on opening screen
   goto_slide(snum) {
     if (this.citP.current_menu === '') {
       this.slides.slideTo(snum);
@@ -842,6 +882,7 @@ export class HomePage {
     this.citP.content.scrollToTop(0);
   }
 
+  // switch back to settings screen after CIT
   sethome() {
     this.citP.switch_divs('div_settings');
     this.citP.current_menu = 'm_testres';
