@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ViewController, AlertController } from 'ionic-angular';
 import { NavParams, LoadingController } from 'ionic-angular';
 import { DataShareProvider } from '../../providers/data-share/data-share';
-
+// popover window for image loading
 @Component({
   template: `
       <ion-list id='po_list_id'>
@@ -43,6 +43,7 @@ export class PopoverImg {
     public dataShare: DataShareProvider,
     private loadingCtrl: LoadingController) { }
 
+  // function for returning dictionary keys (if they exist)
   objkeys = function(dict) {
     try {
       return Object.keys(dict).sort();
@@ -52,6 +53,7 @@ export class PopoverImg {
     }
   }
 
+  // loading selected images
   async load_img(event) {
     let loading = this.loadingCtrl.create({
       content: 'Loading image(s)...'
@@ -71,6 +73,7 @@ export class PopoverImg {
     loading.dismiss();
   };
 
+  // resize loaded image to the device's canvas size
   resizedataURL(datas) {
     return new Promise(async function(resolve, reject) {
       var img = document.createElement('img');
@@ -88,14 +91,17 @@ export class PopoverImg {
     })
   }
 
+  // remove from stored images
   img_remove(inp) {
     delete this.dataShare.stored_images[inp];
     this.dataShare.storage.set('imgs', this.dataShare.stored_images);
   }
+  // when popover window is okayed
   img_select(inp) {
     this.viewCtrl.dismiss(inp);
   }
 
+  // remove all stored images: confirmation dialogue and execution
   img_removeall() {
     let alert = this.alertCtrl.create({
       title: 'Confirm removal',

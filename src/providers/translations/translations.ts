@@ -1,3 +1,5 @@
+// this files contains all instructions and filler words used in the CIT
+
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -17,7 +19,7 @@ export class TranslationProvider {
     'pl': 'Polski'
   };
 
-
+  // target-side default fillers
   targetref_words_orig: object = {
     'en': ["FAMILIAR", "MINE", "RECOGNIZED"], // these words are not to be translated literally one by one. The translations should always try to find the simplest, clearest words that relate to relevance, familiarity, recognition, importance. (The English "MINE" is actually not the best, but it's good to also have a shorter word and this fits there.)
     'cn': '中文',
@@ -27,6 +29,7 @@ export class TranslationProvider {
     'pl': ["ZNANE", "ISTOTNE", "ZNACZĄCE"]
   };
 
+  // nontarget-side default fillers
   nontargref_words_orig: object = {
     'en': ["FOREIGN", "IRRELEVANT", "OTHER", "RANDOM", "THEIRS", "UNFAMILIAR"], // these should have the meaning opposite of  relevance, familiarity, importance
     'cn': '中文',
@@ -187,6 +190,7 @@ export class TranslationProvider {
     'pl': 'Koniec testu.'
   };
 
+  // instructions preceding given blocks, set based on the selected CIT version
   blck_texts: any = {
     'en': (targs, nontargs, trefs, nontrefs, cittype) => {
       let numprac: string;

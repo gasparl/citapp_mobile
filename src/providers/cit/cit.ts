@@ -57,7 +57,7 @@ export class CitProvider {
   current_div: string = "div_start"; // ddd default: "div_start", div_settings, div_dems, div_cit_main, div_end
   current_segment: string = 'main';
   current_menu: string = '';
-  false_delay: number = 400; // duration of "False" message
+  false_delay: number = 400; // duration of "Wrong" message
   tooslow_delay: number = 400; // duration of "Too Slow" message
   isi_delay_minmax: number[] = [300, 700]; // min/max of ISI, in ms
   response_timelimit: number;
@@ -241,7 +241,7 @@ export class CitProvider {
     }.bind(this), this.tooslow_delay);
   }
 
-  // showing "False"
+  // showing "Wrong"
   flash_false() {
     this.feed_text = this.trP.feedwrong[this.trP.lang];
     setTimeout(function() {

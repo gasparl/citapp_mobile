@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ViewController } from 'ionic-angular';
 
+// dropdown menu
 @Component({
   template: `
       <ion-list>
