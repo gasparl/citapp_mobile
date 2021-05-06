@@ -50,7 +50,6 @@ export class HomePage {
 
   // global variables
   initslide: any = 0;
-  cit_items: string[] = [];
   form_items: FormGroup;
   mailpost: string = "";
   pwpost: string = "";
@@ -61,6 +60,10 @@ export class HomePage {
   on_device: boolean;
   submit_failed: boolean = false;
   consentitems: string;
+
+  cit_items: string[] = []; // this variable will contain all CIT main items (probes and target)
+  // for an example of how to populate this variable, see the fill_demo function
+
   // assign filler words in the given language
   targetref_words: string[] = JSON.parse(JSON.stringify(this.trP.targetref_words_orig[this.trP.lang]));
   nontargref_words: string[] = JSON.parse(JSON.stringify(this.trP.nontargref_words_orig[this.trP.lang]));
@@ -162,7 +165,8 @@ export class HomePage {
     }
   }
 
-  // tries to send basic statistics for each completed test to database
+  // send basic statistics for each completed test to database
+  // (the same mechanism may be used for any data other transfer)
   send_single_stat = function(test_info, key_to_del) {
     this.http.post('https://homepage.univie.ac.at/gaspar.lukacs/x_citapp/x_citapp_stat.php',
       JSON.stringify({
@@ -736,12 +740,12 @@ export class HomePage {
   fill_demo = function() {
     this.default_core();
     this.citP.subj_id = 'CIT_demo_suspect_01';
-    this.cit_items[0] = 'AUG 25';
-    this.cit_items[1] = 'FEB 12';
-    this.cit_items[2] = 'MAY 09';
-    this.cit_items[3] = 'JUN 14';
-    this.cit_items[4] = 'OCT 23';
-    this.cit_items[5] = 'DEC 05';
+    this.cit_items[0] = 'AUG 25'; // target item
+    this.cit_items[1] = 'FEB 12'; // probe 1
+    this.cit_items[2] = 'MAY 09'; // probe 2
+    this.cit_items[3] = 'JUN 14'; // probe 3
+    this.cit_items[4] = 'OCT 23'; // probe 4
+    this.cit_items[5] = 'DEC 05'; // probe 5
     document.getElementById("demofeed_id").style.color = 'green';
     setTimeout(() => {
       try {

@@ -6,11 +6,11 @@ This app implements the response time Concealed Information Test (CIT) on smartp
 
 ### Installation and Requirements
 
-Currently, the app is only built for _Android_ (i.e., smartphones with Andriod OS). It can be installed via Google Play freely (no fees, no ads): https://play.google.com/store/apps/details?id=io.gaspar.citapp
+Currently, the app is only built for _Android_ (i.e., smartphones with Android OS). It can be installed via Google Play freely (no fees, no ads): https://play.google.com/store/apps/details?id=io.gaspar.citapp
 
 (Alternatively, the APK file is also directly available via https://osf.io/fjvna/, under the "CITapp" folder.)
 
-It should run on any on any modern Android phone (4.4 [KitKat] or newer Andriod OS).
+It should run on any on any modern Android phone (4.4 [KitKat] or newer Android OS).
 
 ### Introduction
 
@@ -34,7 +34,7 @@ These filler items induce a particular semantic context that increases the sensi
 
 **No-target RT-CIT**: the same as the enhanced RT-CIT, but with no target items. (For details, see Lukács & Ansorge, 2019.)
 
-The CIT version version can be chosen under the SETTINGS tab, among various other options. 
+The CIT version version can be chosen under the SETTINGS tab, among various other options.
 
 ### Item Selection and Image Items
 
@@ -46,7 +46,7 @@ Importantly, the so-called "irrelevants" are not designated as such in the inter
 
 #### Images
 
-Image items can be chosen for all item types. Any common image types are acceptable. (Note: Transparent parts will stay transparent in front of the general black background during the test.) 
+Image items can be chosen for all item types. Any common image types are acceptable. (Note: Transparent parts will stay transparent in front of the general black background during the test.)
 
 Images may be preloaded in groups, and selected for the given places (e.g. as target or as a filler) afterwards. Any number of images may also be assigned automatically, using the "AUTOFILL ALL IMAGES" button, if the given images' filenames include designations of the given item types: "target", "probe1", "probe2", "probe3", "probe4", "probe5", "filler1", "filler2", "filler3", "filler4", "filler5", "filler6", "filler7", "filler8", "filler9". (So e.g., an image could be named "gun42_probe1.png", and it can then be autofilled for Probe 1.)
 
@@ -165,4 +165,3 @@ Noordraven, E., & Verschuere, B. (2013). Predicting the sensitivity of the react
 Seymour, T. L., Seifert, C. M., Shafto, M. G., & Mosmann, A. L. (2000). Using response time measures to assess "guilty knowledge". _Journal of Applied Psychology, 85_(1), 30–37. https://doi.org/10.1037//0021-9010.85.1.30
 
 [![DOI](https://zenodo.org/badge/219313499.svg)](https://zenodo.org/badge/latestdoi/219313499)
-
