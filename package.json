@@ -1,5 +1,5 @@
 {
-  "name": "CITapp",
+  "name": "SmaRT-CIT",
   "version": "1.1.0",
   "author": "Gaspar Lukacs",
   "homepage": "https://github.com/gasparl/citapp_mobile/",
@@ -77,7 +77,7 @@
     "@types/node": "^9.6.55",
     "typescript": "^2.6.2"
   },
-  "description": "CITapp: a response time-based Concealed Information Test lie detector smartphone application.",
+  "description": "SmaRT-CIT: a response time-based Concealed Information Test lie detector smartphone application.",
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},

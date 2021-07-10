@@ -420,7 +420,7 @@ export class HomePage {
     let email = {
       to: this.mails,
       cc: "",
-      subject: "CITapp data " + this.citP.cit_results.file_name,
+      subject: "SmaRT-CIT data " + this.citP.cit_results.file_name,
       body: "",
       attachments: [
         this.citP.path + this.citP.cit_results.file_name
