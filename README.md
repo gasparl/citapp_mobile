@@ -1,24 +1,26 @@
-### Concealed Information Test Mobile Application
+### SmaRT-CIT: Smartphone-Based Response Time Concealed Information Test
+
+---
 
 ### Summary
 
-This app implements the response time Concealed Information Test (CIT) on smartphones. The CIT aims to reveal whether or not a certain information detail (e.g. a photo taken from the scene of a recent burglary) is known to the tested person.
+The SmaRT-CIT app implements the Response Time Concealed Information Test (RT-CIT) on smartphones. The RT-CIT aims to reveal whether or not a certain information detail (e.g. a photo taken from the scene of a recent burglary) is known to the tested person.
 
 ### Installation and Requirements
 
-Currently, the app is only built for _Android_ (i.e., smartphones with Android OS). It can be installed via Google Play freely (no fees, no ads): https://play.google.com/store/apps/details?id=io.gaspar.citapp
+Currently, the SmaRT-CIT is only built for _Android_ (i.e., smartphones with Android OS). It can be installed via Google Play freely (no fees, no ads): https://play.google.com/store/apps/details?id=io.gaspar.citapp
 
-(Alternatively, the APK file is also directly available via https://osf.io/fjvna/, under the "CITapp" folder.)
+(Alternatively, the APK file is also directly available via https://osf.io/fjvna/, under the "SmaRTCIT" folder.)
 
 It should run on any on any modern Android phone (4.4 [KitKat] or newer Android OS).
 
 ### Introduction
 
-No deception detection method has been scientifically proven to achieve perfect or close to perfect accuracies in discriminating deceptive ("guilty") persons from truth-telling ("innocent") ones, notwithstanding the claims by some commercial services and products. The most efficient "Concealed Information Test" version in the present application ("enhanced") achieved a remarkably high accuracies (_Lukács, Kleinberg, & Verschuere, 2017_; _Lukács & Ansorge, 2019_), but even so it can only be said to provide an accuracy of roughly around 90% – under certain conditions – and it still needs further research and replications. Correspondingly, this application is only for testing and research purposes, and no serious judgments should be based on its results. Furthermore, anyone using it should have at least a basic understanding of how it works – see below.
+No deception detection method has been scientifically proven to achieve perfect or close to perfect accuracies in discriminating deceptive ("guilty") persons from truth-telling ("innocent") ones, notwithstanding the claims by some commercial services and products. The most efficient "Concealed Information Test" version in the present SmaRT-CIT application ("enhanced") achieved a remarkably high accuracies (_Lukács, Kleinberg, & Verschuere, 2017_; _Lukács & Ansorge, 2019_), but even so it can only be said to provide an accuracy of roughly around 90% – under certain conditions – and it still needs further research. Correspondingly, the SmaRT-CIT is only for testing and research purposes, and no serious judgments should be based on its results. Furthermore, anyone using it should have at least a basic understanding of how it works – see below.
 
 ### The CIT Versions
 
-This application implements three versions of the reaction time-based Concealed Information Test (RT-CIT; _Seymour et al., 2000_; _Lukács, Kleinberg, & Verschuere, 2017_, _Lukács & Ansorge, 2019_): _standard_, _enhanced_, and _no-target_.
+This application implements three versions of the RT-CIT (_Seymour et al., 2000_; _Lukács, Kleinberg, & Verschuere, 2017_, _Lukács & Ansorge, 2019_): _standard_, _enhanced_, and _no-target_.
 
 The _standard_ and _enhanced_ versions aim to reveal whether or not a certain information detail – the _probe_ – is known to the tested person. **In these cases, the identity of the probe should not be shown to the person taking the test: the starting page must be first completed and submitted by the person who administers the test. The**  **irrelevant**  **and**  **target** **items must be similar to the probe, and indistinguishable for a person who does not know the relevance of the probe (e.g. the probe is a stolen suitcase, and the irrelevant and targets are other suitcases).**
 
@@ -34,7 +36,7 @@ These filler items induce a particular semantic context that increases the sensi
 
 **No-target RT-CIT**: the same as the enhanced RT-CIT, but with no target items. (For details, see Lukács & Ansorge, 2019.)
 
-The CIT version version can be chosen under the SETTINGS tab, among various other options.
+The RT-CIT version can be chosen under the SETTINGS tab, among various other options.
 
 ### Item Selection and Image Items
 
@@ -54,7 +56,7 @@ The displayed images will always have equal height and width. Therefore, to reta
 
 ### Languages
 
-Translations of the original English for all test instructions and filler items are currently available in German, Hungarian, and Polish. (Apart from the CIT texts from test start to test completion, the app interface language always stays English.) The translation process is [fairly straightforward](https://github.com/gasparl/citapp_mobile/blob/master/src/providers/translations/translations.ts); if you would like to contribute with an additional language, don't hesitate to [contact me](mailto:lkcsgaspar@gmail.com). (Japanese and Chinese translations are planned in the near future.)
+Translations of the original English for all test instructions and filler items are currently available in German, Hungarian, and Polish. (Apart from the CIT texts from test start to test completion, the SmaRT-CIT interface language always stays English.) The translation process is [fairly straightforward](https://github.com/gasparl/citapp_mobile/blob/master/src/providers/translations/translations.ts); if you would like to contribute with an additional language, don't hesitate to [contact me](mailto:lkcsgaspar@gmail.com). (Japanese and Chinese translations are planned in the near future.)
 
 To load the default fillers in any given language, press RESTORE DEFAULT under the FILLERS tab. General familiarity-related fillers in the given language will then be loaded.
 
@@ -79,16 +81,16 @@ In each block of the standard and enhanced versions, each probe, irrelevant, and
 
 #### Practice Rounds
 
-The main task is preceded by two or three practice rounds. If there are fillers (Enhanced and No-target versions), in the first round the examinee has to categorize all filler items once, and needs a minimum accuracy (ratio of correct responses in time per all responses) larger than 80% for each of the two filler types (i.e. left-side and right-side); otherwise the round has to be repeated. Next, there is a comprehension check (which is the first practice round for the Standard version). The check serves to ensure that the examinee fully understands the task. This phase includes all main items (probe, target, irrelevants) presented once. In this phase, examinees has plenty of time (10 s) to choose a response – however, each trial requires a correct response. In case of an incorrect response, the phase has to be repeated. In the following last practice task contains all possible items in the given test (main items and, where applicable, fillers). Here, 40% accuracy is needed on each item type, otherwise the round has to be repeated. The item types are: targets; left-side fillers; right-side fillers; main items (probes and irrelevants together).
+The main task is preceded by two or three practice rounds. If there are fillers (Enhanced and No-target versions), in the first round the examinee has to categorize all filler items once, and needs a minimum accuracy (ratio of correct responses in time per all responses) larger than 80% for each of the two filler types (i.e. left-side and right-side); otherwise the round has to be repeated. Next, there is a comprehension check (which is the first practice round for the Standard version). The check serves to ensure that the examinee fully understands the task. This phase includes all main items (probe, target, irrelevants) presented once. In this phase, examinees has plenty of time (10 s) to choose a response – however, each trial requires a correct response. In case of an incorrect response, the phase has to be repeated. In the following last practice task contains all possible items in the given test (main items and, where applicable, fillers). Here, 40% accuracy is needed on each item type, otherwise the round has to be repeated. However, there it is only repeated once: after one repetition, regardless of accuracy, the main task starts. (This is to avoid habituation effects, as well as to not make the task too long.) The item types are: targets; left-side fillers; right-side fillers; main items (probes and irrelevants together).
 
 
 ### Settings Storage
 
-For convenience, e.g. for an experiment, all settings (including texts, e.g. for core and filler items) can be stored in an online database and then loaded in the app on anyone's device. Storage can be done in two ways.
+For convenience, e.g. for an experiment, all settings (including texts, e.g. for core and filler items) can be stored in an online database and then loaded in the SmaRT-CIT on anyone's device. Storage can be done in two ways.
 
 First, via the following website: https://gasparl.github.io/citapp_storage/. The form simply needs to be filled according with the desired settings.
 
-Second, within the app under SETTINGS, with the SAVE SETTINGS ONLINE button, in which case the app's current settings will be stored.
+Second, within the SmaRT-CIT under SETTINGS, with the SAVE SETTINGS ONLINE button, in which case the app's current settings will be stored.
 
 In either case, an _Identifier_ and a _Password_ must be given. These should contain only simple English characters and underscores (and @ and dot in case of _Identifier_, for emails). There are no length requirements, in fact both fields may be left empty – but this (or similarly simple choices) would make the storage highly unreliable, since anyone might override it. Therefore, at least an _Identifier_ of some length should be given, ideally an email address: this ensures uniqueness as well as allows to send password reminders if needed.
 
@@ -98,7 +100,7 @@ As soon as the settings are stored, they can be autofilled using the LOAD SETTIN
 ### Results
 
 
-At the end of the test there are no instructions or button, but only the text "_Test completed._" (in the selected language). This is to prevent subjects to see the results without permission. To see the results, _swipe right_ on the text. The summary results will then be available including detailed description of each variable and potential interpretation. The full results file (with each response recorded) is saved on the phone: the path to the file is displayed below the summary, and the full file may forwarded using any application on the device. (Alternatively, the data can also be copied to the clipboard as plain text.) The summaries of all completed tests will be permanently available (unless explicitely removed/deleted) in a list under the RESULTS menu in the application.
+At the end of the test there are no instructions or button, but only the text "_Test completed._" (in the selected language). This is to prevent subjects to see the results without permission. To see the results, _swipe right_ on the text. The summary results will then be available including detailed description of each variable and potential interpretation. The full results file (with each response recorded) is saved on the phone: the path to the file is displayed below the summary, and the full file may forwarded using any application on the device. (Alternatively, the data can also be copied to the clipboard as plain text.) The summaries of all completed tests will be permanently available (unless explicitely removed/deleted) in a list under the RESULTS menu in the SmaRT-CIT app.
 
 
 The data contains all responses (one per row) from the test, with all relevant information, corresponding to the self-explanatory titles in the first row.
@@ -134,13 +136,13 @@ _**date\_in\_ms**: The number of milliseconds elapsed since January 1, 1970, 00:
 
 ### Example usage
 
-To experimentally test this application, one may for example enter the personal name (e.g., forename) of a examinee as probe, and other, similar names as target and irrelevant items. (These latter items should be controlled for similarity to the extent possible; e.g., number of characters or syllables, word frequency, etc.) In this case, the examinee's responses to the probe (own personal name) should be notably slower than the responses to the irrelevants (e.g., around 15-30 ms average difference). Correspondingly, the _d-CIT_ should be relatively high as well (e.g., larger than 0.3). As a control condition, one may enter irrelevant names for all item types, so that the probe, irrelevant, and target items are all in fact irrelevant to the examinee. In this case, the responses to the probe should be of similar speed as the responses to the irrelevants (since, again, the probe is not relevant to the examinee and is not recognized as any different from the rest of the items).
+To experimentally test the SmaRT-CIT, one may for example enter the personal name (e.g., forename) of a examinee as probe, and other, similar names as target and irrelevant items. (These latter items should be controlled for similarity to the extent possible; e.g., number of characters or syllables, word frequency, etc.) In this case, the examinee's responses to the probe (own personal name) should be notably slower than the responses to the irrelevants (e.g., around 15-30 ms average difference). Correspondingly, the _d-CIT_ should be relatively high as well (e.g., larger than 0.3). As a control condition, one may enter irrelevant names for all item types, so that the probe, irrelevant, and target items are all in fact irrelevant to the examinee. In this case, the responses to the probe should be of similar speed as the responses to the irrelevants (since, again, the probe is not relevant to the examinee and is not recognized as any different from the rest of the items).
 
 For convenience, there is a _Demo_ menu, under which the start page may be automatically filled by a simple button press. (The description of the example is given under the same menu.)
 
 ### Terms of Use and Privacy
 
-This application as well as its source code is free to use and to redistribute, as per the [BSD-2-Clause License](https://github.com/gasparl/citapp_mobile/blob/master/LICENSE "BSD-2-Clause").
+The SmaRT-CIT as well as its source code is free to use and to redistribute, as per the [BSD-2-Clause License](https://github.com/gasparl/citapp_mobile/blob/master/LICENSE "BSD-2-Clause").
 
 By using this application, you agree to the anonymous and automatic sharing of some very basic data as follows. After each completed test, the application will automatically attempt to forward the following three details to be saved in a private database for statistical purposes: (a) the date (year, month, day) when the test was completed, (b) the language in which the test was completed, (c) the country code for the approximate location of the testing (based on IP address – but the IP address itself is not saved). Of course, if the application is always used offline, this data will never be forwarded.
 
@@ -150,7 +152,7 @@ If you have any questions or find any issues (bugs, desired features), [write an
 
 ### Citation
 
-Cite this application as:
+Cite the SmaRT-CIT as:
 
 Lukács, G., Kleinberg, B., Kunzi, M., & Ansorge, U. (2020). Response Time Concealed Information Test on Smartphones. _Collabra: Psychology, 6_(1), 4. http://doi.org/10.1525/collabra.255
 

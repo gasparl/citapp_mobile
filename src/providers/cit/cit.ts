@@ -269,6 +269,7 @@ export class CitProvider {
   }
 
   // evaluation of practice task: whether it needs repetition
+  prac3_rep: number;
   practice_eval() {
     let min_ratio;
     var is_valid = true;
@@ -282,6 +283,11 @@ export class CitProvider {
       }
     } else {
       if (this.blocknum === 3) {
+        if (this.prac3_rep == 0) {
+          this.prac3_rep++;
+        } else {
+          return true;
+        }
         min_ratio = 0.4
       } else {
         min_ratio = 0.8
@@ -442,6 +448,7 @@ export class CitProvider {
     this.block_trialnum = 0;
     // 0: fillers & target, 1: standard CIT, 2: fillers (no target)
     if (this.blocknum == 1) {
+      this.prac3_rep = 0;
       if (this.cit_type === 1) {
         this.response_timelimit = 10000;
         this.crrnt_phase = 'practice_strict';
