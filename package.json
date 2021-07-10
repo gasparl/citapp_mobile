@@ -96,7 +96,8 @@
       "ionic-plugin-keyboard": {},
       "cordova-plugin-navigationbar": {},
       "cordova-plugin-insomnia": {},
-      "cordova-plugin-telerik-imagepicker": {}
+      "cordova-plugin-telerik-imagepicker": {},
+      "cordova-sqlite-storage": {}
     },
     "platforms": [
       "browser",
