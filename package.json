@@ -92,7 +92,6 @@
       "cordova-plugin-statusbar": {},
       "cordova-plugin-network-information": {},
       "cordova-clipboard": {},
-      "cordova-plugin-background-mode": {},
       "ionic-plugin-keyboard": {},
       "cordova-plugin-navigationbar": {},
       "cordova-plugin-insomnia": {},
