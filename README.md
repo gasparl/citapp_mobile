@@ -14,6 +14,8 @@ Currently, the SmaRT-CIT is only built for _Android_ (i.e., smartphones with And
 
 It should run on any on any modern Android phone (4.4 [KitKat] or newer Android OS).
 
+However, using the present source code, the app can be built for any system supported by the Ionic framework (e.g. iOS, Windows); see the [SmaRT-CIT paper](https://doi.org/10.5334/jors.341) for details. (If you have built a SmaRT-CIT application for any system apart from Android, I would much appreciate it if you [shared](mailto:lkcsgaspar@gmail.com) the executable file with me. I would then upload this file to the OSF page so that it's publicly available.)
+
 ### Introduction
 
 No deception detection method has been scientifically proven to achieve perfect or close to perfect accuracies in discriminating deceptive ("guilty") persons from truth-telling ("innocent") ones, notwithstanding the claims by some commercial services and products. The most efficient "Concealed Information Test" version in the present SmaRT-CIT application ("enhanced") achieved a remarkably high accuracies (_Lukács, Kleinberg, & Verschuere, 2017_; _Lukács & Ansorge, 2019_), but even so it can only be said to provide an accuracy of roughly around 90% – under certain conditions – and it still needs further research. Correspondingly, the SmaRT-CIT is only for testing and research purposes, and no serious judgments should be based on its results. Furthermore, anyone using it should have at least a basic understanding of how it works – see below.
@@ -153,6 +155,10 @@ If you have any questions or find any issues (bugs, desired features), [write an
 ### Citation
 
 Cite the SmaRT-CIT as:
+
+Lukács, G. (2021). SmaRT-CIT: Smartphone app for the Response Time Concealed Information Test. _Journal of Open Research Software, 9_(1), 1-7. https://doi.org/10.5334/jors.341
+
+You can also refer to the paper that validated the core of this framework:
 
 Lukács, G., Kleinberg, B., Kunzi, M., & Ansorge, U. (2020). Response Time Concealed Information Test on Smartphones. _Collabra: Psychology, 6_(1), 4. http://doi.org/10.1525/collabra.255
 
